@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>MC-Web | Administration</title>
+
+    <link
+        rel="stylesheet"
+        href="admin.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     BARRE LATÉRALE
+===================================================== -->
+
+<aside class="sidebar">
+
+    <div class="admin-logo">
+        MC-Web
+    </div>
+
+
+    <div class="admin-subtitle">
+        Administration
+    </div>
+
+
+    <nav>
+
+        <button
+            class="menu-item active"
+            data-section="dashboard"
+        >
+            Tableau de bord
+        </button>
+
+
+        <button
+            class="menu-item"
+            data-section="requests"
+        >
+            Formulaires clients
+        </button>
+
+
+        <button
+            class="menu-item"
+            data-section="visitors"
+        >
+            Visiteurs
+        </button>
+
+
+        <button
+            class="menu-item"
+            data-section="settings"
+        >
+            Paramètres
+        </button>
+
+    </nav>
+
+
+    <div class="sidebar-bottom">
+
+        <button
+            id="logoutButton"
+            class="logout-button"
+        >
+            Se déconnecter
+        </button>
+
+    </div>
+
+</aside>
+
+
+
+<!-- =====================================================
+     CONTENU PRINCIPAL
+===================================================== -->
+
+<main class="main-content">
+
+
+    <!-- =================================================
+         EN-TÊTE
+    ================================================= -->
+
+    <header class="admin-header">
+
+        <div>
+
+            <p class="admin-label">
+                ESPACE ADMINISTRATEUR
+            </p>
+
+            <h1 id="pageTitle">
+                Tableau de bord
+            </h1>
+
+        </div>
+
+
+        <div class="admin-user">
+
+            <div class="user-avatar">
+                A
+            </div>
+
+            <div>
+
+                <strong>
+                    Administrateur
+                </strong>
+
+                <small>
+                    Créateur du site
+                </small>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =================================================
+         TABLEAU DE BORD
+    ================================================= -->
+
+    <section
+        id="dashboard"
+        class="admin-section active"
+    >
+
+        <div class="section-intro">
+
+            <h2>
+                Vue d'ensemble
+            </h2>
+
+            <p>
+                Consultez rapidement l'activité de votre
+                formulaire et les demandes reçues.
+            </p>
+
+        </div>
+
+
+        <!-- CARTES STATISTIQUES -->
+
+        <div class="stats-grid">
+
+
+            <div class="stat-card">
+
+                <span class="stat-title">
+                    Formulaires reçus
+                </span>
+
+                <strong
+                    id="totalRequests"
+                    class="stat-number"
+                >
+                    0
+                </strong>
+
+                <span class="stat-description">
+                    Toutes les demandes clients
+                </span>
+
+            </div>
+
+
+
+            <div class="stat-card">
+
+                <span class="stat-title">
+                    Nouveaux formulaires
+                </span>
+
+                <strong
+                    id="newRequests"
+                    class="stat-number"
+                >
+                    0
+                </strong>
+
+                <span class="stat-description">
+                    Demandes non consultées
+                </span>
+
+            </div>
+
+
+
+            <div class="stat-card">
+
+                <span class="stat-title">
+                    Visiteurs
+                </span>
+
+                <strong
+                    id="totalVisitors"
+                    class="stat-number"
+                >
+                    0
+                </strong>
+
+                <span class="stat-description">
+                    Visiteurs enregistrés
+                </span>
+
+            </div>
+
+
+
+            <div class="stat-card">
+
+                <span class="stat-title">
+                    Aujourd'hui
+                </span>
+
+                <strong
+                    id="todayRequests"
+                    class="stat-number"
+                >
+                    0
+                </strong>
+
+                <span class="stat-description">
+                    Demandes reçues aujourd'hui
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- DERNIÈRES DEMANDES -->
+
+        <div class="admin-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h3>
+                        Dernières demandes
+                    </h3>
+
+                    <p>
+                        Les demandes les plus récentes.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="text-button"
+                    data-section-link="requests"
+                >
+                    Voir toutes les demandes
+                </button>
+
+            </div>
+
+
+            <div
+                id="recentRequests"
+                class="requests-container"
+            >
+
+                <div class="empty-state">
+
+                    <strong>
+                        Aucune demande
+                    </strong>
+
+                    <p>
+                        Les formulaires envoyés par les clients
+                        apparaîtront ici.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         FORMULAIRES CLIENTS
+    ================================================= -->
+
+    <section
+        id="requests"
+        class="admin-section"
+    >
+
+        <div class="section-intro">
+
+            <h2>
+                Formulaires clients
+            </h2>
+
+            <p>
+                Consultez toutes les demandes envoyées
+                par vos clients.
+            </p>
+
+        </div>
+
+
+        <!-- OUTILS -->
+
+        <div class="toolbar">
+
+            <div class="search-box">
+
+                <input
+                    type="search"
+                    id="requestSearch"
+                    placeholder="Rechercher un client, un projet..."
+                >
+
+            </div>
+
+
+            <select id="requestFilter">
+
+                <option value="all">
+                    Tous les types
+                </option>
+
+                <option value="Site vitrine">
+                    Site vitrine
+                </option>
+
+                <option value="Boutique en ligne">
+                    Boutique en ligne
+                </option>
+
+                <option value="Portfolio">
+                    Portfolio
+                </option>
+
+                <option value="Blog">
+                    Blog
+                </option>
+
+                <option value="Site d'entreprise">
+                    Site d'entreprise
+                </option>
+
+                <option value="Autre">
+                    Autre
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <!-- TABLEAU -->
+
+        <div class="admin-card table-card">
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Client
+                            </th>
+
+                            <th>
+                                Projet
+                            </th>
+
+                            <th>
+                                Type
+                            </th>
+
+                            <th>
+                                Date
+                            </th>
+
+                            <th>
+                                Statut
+                            </th>
+
+                            <th>
+                                Action
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="requestsTable">
+
+                        <tr>
+
+                            <td
+                                colspan="6"
+                                class="table-empty"
+                            >
+
+                                Aucune demande enregistrée.
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         VISITEURS
+    ================================================= -->
+
+    <section
+        id="visitors"
+        class="admin-section"
+    >
+
+        <div class="section-intro">
+
+            <h2>
+                Visiteurs du site
+            </h2>
+
+            <p>
+                Consultez les statistiques relatives aux
+                visiteurs de votre site.
+            </p>
+
+        </div>
+
+
+        <div class="stats-grid">
+
+
+            <div class="stat-card">
+
+                <span class="stat-title">
+                    Total visiteurs
+                </span>
+
+                <strong
+                    id="visitorTotal"
+                    class="stat-number"
+                >
+                    0
+                </strong>
+
+            </div>
+
+
+
+            <div class="stat-card">
+
+                <span class="stat-title">
+                    Aujourd'hui
+                </span>
+
+                <strong
+                    id="visitorToday"
+                    class="stat-number"
+                >
+                    0
+                </strong>
+
+            </div>
+
+
+
+            <div class="stat-card">
+
+                <span class="stat-title">
+                    Cette semaine
+                </span>
+
+                <strong
+                    id="visitorWeek"
+                    class="stat-number"
+                >
+                    0
+                </strong>
+
+            </div>
+
+
+
+            <div class="stat-card">
+
+                <span class="stat-title">
+                    Ce mois
+                </span>
+
+                <strong
+                    id="visitorMonth"
+                    class="stat-number"
+                >
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="admin-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h3>
+                        Activité des visiteurs
+                    </h3>
+
+                    <p>
+                        Les données détaillées seront
+                        disponibles après connexion au serveur.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="visitor-placeholder">
+
+                <p>
+                    Aucune donnée de visiteur disponible
+                    pour le moment.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         PARAMÈTRES
+    ================================================= -->
+
+    <section
+        id="settings"
+        class="admin-section"
+    >
+
+        <div class="section-intro">
+
+            <h2>
+                Paramètres
+            </h2>
+
+            <p>
+                Gérez les paramètres de votre espace
+                administrateur.
+            </p>
+
+        </div>
+
+
+        <div class="admin-card settings-card">
+
+            <div class="setting-row">
+
+                <div>
+
+                    <strong>
+                        Nom du site
+                    </strong>
+
+                    <p>
+                        Nom affiché dans votre espace
+                        administrateur.
+                    </p>
+
+                </div>
+
+
+                <input
+                    type="text"
+                    id="siteName"
+                    value="MC-Web"
+                >
+
+            </div>
+
+
+
+            <div class="setting-row">
+
+                <div>
+
+                    <strong>
+                        E-mail administrateur
+                    </strong>
+
+                    <p>
+                        Adresse utilisée pour
+                        l'administration.
+                    </p>
+
+                </div>
+
+
+                <input
+                    type="email"
+                    id="adminEmail"
+                    placeholder="admin@exemple.com"
+                >
+
+            </div>
+
+
+
+            <div class="setting-row">
+
+                <div>
+
+                    <strong>
+                        Notifications
+                    </strong>
+
+                    <p>
+                        Recevoir une notification lors
+                        d'une nouvelle demande.
+                    </p>
+
+                </div>
+
+
+                <label class="switch">
+
+                    <input
+                        type="checkbox"
+                        id="notifications"
+                        checked
+                    >
+
+                    <span></span>
+
+                </label>
+
+            </div>
+
+
+
+            <button
+                type="button"
+                id="saveSettings"
+                class="primary-button"
+            >
+                Enregistrer les paramètres
+            </button>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+
+<!-- =====================================================
+     FENÊTRE : DÉTAILS D'UNE DEMANDE
+===================================================== -->
+
+<div
+    id="requestModal"
+    class="modal"
+    aria-hidden="true"
+>
+
+    <div class="modal-overlay"></div>
+
+
+    <div class="modal-content">
+
+
+        <div class="modal-header">
+
+            <div>
+
+                <p class="admin-label">
+                    FORMULAIRE CLIENT
+                </p>
+
+                <h2 id="modalTitle">
+                    Détails de la demande
+                </h2>
+
+            </div>
+
+
+            <button
+                type="button"
+                id="closeModal"
+                class="close-button"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+
+        <div
+            id="requestDetails"
+            class="request-details"
+        >
+
+            <!-- Les informations seront ajoutées
+                 automatiquement par admin.js -->
+
+        </div>
+
+
+
+        <div class="modal-actions">
+
+            <button
+                type="button"
+                id="downloadRequest"
+                class="primary-button"
+            >
+                Télécharger / Imprimer PDF
+            </button>
+
+
+            <button
+                type="button"
+                id="deleteRequest"
+                class="danger-button"
+            >
+                Supprimer
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script src="admin.js"></script>
+
+
+</body>
+
+</html>
