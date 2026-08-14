@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MC-Web | Formulaire de commande</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="container header-inner">
+        <div class="brand">MC-Web</div>
+        <span class="header-label">Formulaire de commande</span>
+    </div>
+</header>
+
+
+<main class="container">
+
+    <section class="intro">
+        <p class="eyebrow">Votre projet web</p>
+
+        <h1>Parlez-nous de votre site</h1>
+
+        <p>
+            Décrivez votre projet afin que nous puissions comprendre
+            précisément vos besoins et préparer un site adapté.
+        </p>
+    </section>
+
+
+    <!-- BARRE DE PROGRESSION -->
+
+    <div class="progress">
+
+        <div class="progress-item active" data-step-indicator="1">
+            <span>1</span>
+            <strong>Type de site</strong>
+        </div>
+
+        <div class="progress-line"></div>
+
+        <div class="progress-item" data-step-indicator="2">
+            <span>2</span>
+            <strong>Votre projet</strong>
+        </div>
+
+        <div class="progress-line"></div>
+
+        <div class="progress-item" data-step-indicator="3">
+            <span>3</span>
+            <strong>Coordonnées</strong>
+        </div>
+
+        <div class="progress-line"></div>
+
+        <div class="progress-item" data-step-indicator="4">
+            <span>4</span>
+            <strong>Vérification</strong>
+        </div>
+
+    </div>
+
+
+<form id="clientForm" novalidate>
+
+
+<!-- =====================================================
+     ÉTAPE 1 : TYPE DE SITE
+===================================================== -->
+
+<section class="form-step active" data-step="1">
+
+    <div class="card">
+
+        <h2>1. Quel type de site souhaitez-vous ?</h2>
+
+        <p class="section-description">
+            Vous pouvez sélectionner un ou plusieurs types de site.
+            Les questions correspondantes apparaîtront automatiquement.
+        </p>
+
+
+        <div class="site-types">
+
+
+            <!-- SITE VITRINE -->
+
+            <label class="site-type">
+
+                <input
+                    type="checkbox"
+                    name="siteType"
+                    value="Site vitrine"
+                >
+
+                <span class="checkmark"></span>
+
+                <span>
+                    <strong>Site vitrine</strong>
+
+                    <small>
+                        Présenter votre entreprise, vos services,
+                        votre activité ou vos produits.
+                    </small>
+                </span>
+
+            </label>
+
+
+
+            <!-- BOUTIQUE -->
+
+            <label class="site-type">
+
+                <input
+                    type="checkbox"
+                    name="siteType"
+                    value="Boutique en ligne"
+                >
+
+                <span class="checkmark"></span>
+
+                <span>
+                    <strong>Boutique en ligne</strong>
+
+                    <small>
+                        Vendre vos produits ou services directement
+                        sur Internet.
+                    </small>
+                </span>
+
+            </label>
+
+
+
+            <!-- PORTFOLIO -->
+
+            <label class="site-type">
+
+                <input
+                    type="checkbox"
+                    name="siteType"
+                    value="Portfolio"
+                >
+
+                <span class="checkmark"></span>
+
+                <span>
+                    <strong>Portfolio</strong>
+
+                    <small>
+                        Présenter vos réalisations, compétences,
+                        projets ou expériences.
+                    </small>
+                </span>
+
+            </label>
+
+
+
+            <!-- BLOG -->
+
+            <label class="site-type">
+
+                <input
+                    type="checkbox"
+                    name="siteType"
+                    value="Blog"
+                >
+
+                <span class="checkmark"></span>
+
+                <span>
+                    <strong>Blog</strong>
+
+                    <small>
+                        Publier des articles, actualités,
+                        conseils ou autres contenus.
+                    </small>
+                </span>
+
+            </label>
+
+
+
+            <!-- ENTREPRISE -->
+
+            <label class="site-type">
+
+                <input
+                    type="checkbox"
+                    name="siteType"
+                    value="Site d'entreprise"
+                >
+
+                <span class="checkmark"></span>
+
+                <span>
+                    <strong>Site d'entreprise</strong>
+
+                    <small>
+                        Présenter une entreprise de manière
+                        professionnelle sur Internet.
+                    </small>
+                </span>
+
+            </label>
+
+
+
+            <!-- AUTRE -->
+
+            <label class="site-type">
+
+                <input
+                    type="checkbox"
+                    name="siteType"
+                    value="Autre"
+                >
+
+                <span class="checkmark"></span>
+
+                <span>
+                    <strong>Autre</strong>
+
+                    <small>
+                        Votre projet ne correspond pas aux
+                        catégories précédentes.
+                    </small>
+                </span>
+
+            </label>
+
+        </div>
+
+        <div id="typeError"></div>
+
+    </div>
+
+
+    <div class="actions">
+
+        <button
+            type="button"
+            class="btn primary"
+            id="continueType"
+        >
+            Continuer
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     ÉTAPE 2 : QUESTIONS DU PROJET
+===================================================== -->
+
+<section class="form-step" data-step="2">
+
+    <div class="card">
+
+        <h2>2. Votre projet</h2>
+
+        <p class="section-description">
+            Les questions affichées ci-dessous correspondent
+            aux types de site que vous avez sélectionnés.
+        </p>
+
+
+        <!-- QUESTIONS COMMUNES -->
+
+        <div class="question-section">
+
+            <div class="section-title">
+                Informations générales
+            </div>
+
+
+            <div class="field">
+
+                <label for="projectName">
+                    Nom du projet <span>*</span>
+                </label>
+
+                <input
+                    id="projectName"
+                    name="projectName"
+                    type="text"
+                    placeholder="Ex. Excellence Services"
+                    required
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="company">
+                    Nom de l'entreprise ou de l'activité
+                </label>
+
+                <input
+                    id="company"
+                    name="company"
+                    type="text"
+                    placeholder="Ex. Excellence Services"
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="generalDescription">
+                    Présentez brièvement votre projet <span>*</span>
+                </label>
+
+                <textarea
+                    id="generalDescription"
+                    name="generalDescription"
+                    placeholder="Expliquez votre activité et ce que vous souhaitez réaliser..."
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="mainObjective">
+                    Quel est l'objectif principal du site ? <span>*</span>
+                </label>
+
+                <textarea
+                    id="mainObjective"
+                    name="mainObjective"
+                    placeholder="Ex. Présenter mes services et permettre aux clients de me contacter."
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="colors">
+                    Couleurs ou style souhaité
+                </label>
+
+                <input
+                    id="colors"
+                    name="colors"
+                    type="text"
+                    placeholder="Ex. Noir et blanc, moderne et professionnel"
+                >
+
+            </div>
+
+        </div>
+
+
+
+        <!-- QUESTIONS DYNAMIQUES -->
+
+        <div id="dynamicQuestions"></div>
+
+
+        <!-- AUTRES INFORMATIONS -->
+
+        <div class="question-section">
+
+            <div class="section-title">
+                Informations supplémentaires
+            </div>
+
+
+            <div class="field">
+
+                <label for="additional">
+                    Avez-vous d'autres demandes particulières ?
+                </label>
+
+                <textarea
+                    id="additional"
+                    name="additional"
+                    placeholder="Ajoutez toute information qui pourrait nous être utile..."
+                ></textarea>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="actions split">
+
+        <button
+            type="button"
+            class="btn secondary"
+            id="backToType"
+        >
+            Retour
+        </button>
+
+
+        <button
+            type="button"
+            class="btn primary"
+            id="continueContact"
+        >
+            Continuer
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     ÉTAPE 3 : COORDONNÉES
+===================================================== -->
+
+<section class="form-step" data-step="3">
+
+    <div class="card">
+
+        <h2>3. Vos coordonnées</h2>
+
+        <p class="section-description">
+            Ces informations nous permettront de vous contacter
+            concernant votre projet.
+        </p>
+
+
+        <div class="field">
+
+            <label for="fullName">
+                Nom et prénom <span>*</span>
+            </label>
+
+            <input
+                id="fullName"
+                name="fullName"
+                type="text"
+                placeholder="Ex. Olivier Atchou"
+                required
+            >
+
+        </div>
+
+
+        <div class="field">
+
+            <label for="email">
+                Adresse e-mail <span>*</span>
+            </label>
+
+            <input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="Ex. contact@exemple.com"
+                required
+            >
+
+        </div>
+
+
+        <div class="field">
+
+            <label for="phone">
+                Numéro de téléphone <span>*</span>
+            </label>
+
+            <input
+                id="phone"
+                name="phone"
+                type="tel"
+                placeholder="Ex. +229 01 XX XX XX XX"
+                required
+            >
+
+        </div>
+
+
+        <div class="field">
+
+            <label for="preferredContact">
+                Moyen de contact préféré
+            </label>
+
+            <select
+                id="preferredContact"
+                name="preferredContact"
+            >
+
+                <option value="">
+                    Sélectionnez une option
+                </option>
+
+                <option value="Téléphone">
+                    Téléphone
+                </option>
+
+                <option value="WhatsApp">
+                    WhatsApp
+                </option>
+
+                <option value="E-mail">
+                    E-mail
+                </option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+
+    <div class="actions split">
+
+        <button
+            type="button"
+            class="btn secondary"
+            id="backToProject"
+        >
+            Retour
+        </button>
+
+
+        <button
+            type="button"
+            class="btn primary"
+            id="continueReview"
+        >
+            Vérifier mes réponses
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     ÉTAPE 4 : RÉCAPITULATIF
+===================================================== -->
+
+<section class="form-step" data-step="4">
+
+    <div class="card">
+
+        <h2>4. Vérifiez votre demande</h2>
+
+        <p class="section-description">
+            Vérifiez toutes vos informations avant de confirmer.
+            Vous pouvez revenir en arrière pour effectuer une modification.
+        </p>
+
+
+        <div id="review"></div>
+
+    </div>
+
+
+    <div class="actions split">
+
+        <button
+            type="button"
+            class="btn secondary"
+            id="backToContact"
+        >
+            Modifier
+        </button>
+
+
+        <button
+            type="submit"
+            class="btn primary"
+        >
+            Confirmer et envoyer
+        </button>
+
+    </div>
+
+</section>
+
+</form>
+
+
+
+<!-- =====================================================
+     MESSAGE DE SUCCÈS
+===================================================== -->
+
+<section
+    id="success"
+    class="success-card"
+    hidden
+>
+
+    <div class="success-icon">
+        OK
+    </div>
+
+    <h2>
+        Demande enregistrée
+    </h2>
+
+    <p>
+        Votre formulaire a été correctement rempli.
+        Nous pourrons maintenant traiter votre demande.
+    </p>
+
+    <button
+        type="button"
+        class="btn primary"
+        id="newRequest"
+    >
+        Nouvelle demande
+    </button>
+
+</section>
+
+</main>
+
+
+
+<footer class="site-footer">
+
+    <div class="container">
+        MC-Web — Formulaire de commande
+    </div>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+  </html>
